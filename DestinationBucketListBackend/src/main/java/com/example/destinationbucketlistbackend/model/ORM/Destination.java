@@ -33,7 +33,8 @@ public class Destination {
     @Column
     private String image;
 
-    @Column
+    @Column(name = "is_public")
+    @JsonIgnore
     private Boolean isPublic;
     @ManyToOne
     @JoinColumn(name="user_id")

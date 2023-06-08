@@ -16,12 +16,13 @@ import java.util.Date;
 public class StayDates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
-    @Column
+    @Column(name = "start_date")
     private Date startDate;
 
-    @Column
+    @Column(name = "end_date")
     private Date endDate;
 
     @OneToOne(mappedBy = "stayDate", cascade = CascadeType.ALL)
