@@ -8,12 +8,9 @@ import com.example.destinationbucketlistbackend.service.JwtService;
 import com.example.destinationbucketlistbackend.service.UserService;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.ParseException;
 
 @CrossOrigin
 @RestController
@@ -25,7 +22,6 @@ public class DestinationController {
 
     private final UserService userService;
 
-    private final ModelMapper modelMapper;
 
     @GetMapping("/destinations/public")
     @ResponseBody
@@ -39,11 +35,26 @@ public class DestinationController {
     }
 
     private DestinationDTO convertToDto(Destination destination) {
-        return modelMapper.map(destination, DestinationDTO.class);
+        DestinationDTO destinationDTO = new DestinationDTO();
+
+        destinationDTO.setTitle(destination.getTitle());
+        destinationDTO.setDescription(destination.getDescription());
+        destinationDTO.setStayDate(destination.getStayDate());
+        destinationDTO.setLocation(destination.getLocation());
+        destinationDTO.setImage(destination.getImage());
+        destinationDTO.setIsPublic(destination.getIsPublic());
+        return destinationDTO;
     }
 
-    private Destination convertToEntity(DestinationDTO postDto){
-        return modelMapper.map(postDto, Destination.class);
+    private Destination convertToEntity(DestinationDTO destinationDTO){
+        Destination destination = new Destination();
+        destination.setTitle(destinationDTO.getTitle());
+        destination.setDescription(destinationDTO.getDescription());
+        destination.setStayDate(destinationDTO.getStayDate());
+        destination.setLocation(destinationDTO.getLocation());
+        destination.setImage(destinationDTO.getImage());
+        destination.setIsPublic(destinationDTO.getIsPublic());
+        return destination;
     }
 
     @GetMapping("/destinations/private")
