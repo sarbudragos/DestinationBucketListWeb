@@ -2,7 +2,7 @@ import { Geolocation } from "./Geolocation";
 import { StayDates } from "./StayDates";
 
 export interface Destination {
-    id: string;
+    id: number;
     title:string;
     description: string;
     stayDate: StayDates;

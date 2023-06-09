@@ -1,5 +1,5 @@
 export interface StayDates {
-    id: string;
+    id: number;
     startDate: Date;
     endDate: Date;
 }

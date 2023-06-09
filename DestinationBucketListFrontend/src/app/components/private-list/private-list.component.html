@@ -1,21 +1,22 @@
 <h1 class="font-bold text-3xl py-5">All books</h1>
+<button (click)="goToAddPage()" class="text-black ml-2">Add</button>
 
 <table class="w-full border-collapse table-auto">
-  <!-- <thead>
+  <thead>
     <tr class="bg-violet-100 text-gray-600 uppercase text-sm leading-normal">
       <th class="py-3 px-6 text-left">#</th>
       <th class="py-3 px-6 text-left">Title</th>
-      <th class="py-3 px-6 text-left">Theme</th>
-      <th class="py-3 px-6 text-left">Publish Year</th>
-      <th class="py-3 px-6 text-left">Number of Pages</th>
-      <th class="py-3 px-6 text-left">Price</th>
-      <th class="py-3 px-6 text-left">Actions</th>
+      <th class="py-3 px-6 text-left">Description</th>
+      <th class="py-3 px-6 text-left">Start Date</th>
+      <th class="py-3 px-6 text-left">End Date</th>
+      <th class="py-3 px-6 text-left">Country</th>
+      <th class="py-3 px-6 text-left">Zone</th>
+      <th class="py-3 px-6 text-left">Image</th>
     </tr>
-  </thead> -->
+  </thead>
   <tbody class="text-gray-600 text-sm font-light">
     <tr
       *ngFor="let destination of destinations; index as i"
-      [routerLink]="[destination.id]"
       class="border-b border-violet-200 hover:bg-violet-200"
     >
       <td class="py-3 px-6 text-left">
@@ -28,6 +29,11 @@
       <td class="py-3 px-6 text-left">{{ destination.location.country }}</td>
       <td class="py-3 px-6 text-left">{{ destination.location.zone }}</td>
       <td class="py-3 px-6 text-left">{{ destination.image }}</td>
+      <td class="py-3 px-6 text-left flex gap-6 items-center">
+        <button (click)="deletePrivateDest(destination.id)">Delete</button>
+        <button (click)="updatePrivateDest(destination.id)">Update</button>
+        <button (click)="markFavourite(destination.id)">Favourite</button>
+      </td>
     </tr>
   </tbody>
 </table>

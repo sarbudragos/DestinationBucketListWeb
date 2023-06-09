@@ -1,5 +1,5 @@
 export interface Geolocation {
-    id: string;
+    id: number;
     country: string;
     zone: string;
 }

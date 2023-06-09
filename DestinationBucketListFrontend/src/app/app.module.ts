@@ -4,12 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { PublicListComponent } from './public-list/public-list.component';
-import { PrivateListComponent } from './private-list/private-list.component';
-import { AddDestinationComponent } from './add-destination/add-destination.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { PublicListComponent } from './components/public-list/public-list.component';
+import { PrivateListComponent } from './components/private-list/private-list.component';
+import { AddDestinationComponent } from './components/add-destination/add-destination.component';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { MarkFavouriteComponent } from './components/mark-favourite/mark-favourite.component';
+import { UpdateDestinationComponent } from './components/update-destination/update-destination.component';
+import { DeleetDestinationComponent } from './components/deleet-destination/deleet-destination.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { AddDestinationComponent } from './add-destination/add-destination.compo
     RegisterPageComponent,
     PublicListComponent,
     PrivateListComponent,
-    AddDestinationComponent
+    AddDestinationComponent,
+    DeleteUserComponent,
+    MarkFavouriteComponent,
+    UpdateDestinationComponent,
+    DeleetDestinationComponent
   ],
   imports: [
     BrowserModule,

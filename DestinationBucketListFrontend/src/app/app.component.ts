@@ -23,5 +23,12 @@ export class AppComponent {
     this.router.navigateByUrl('register');
   }
 
+  goToPublicListPage() {
+    this.router.navigateByUrl('publiclist');
+  }
+
+  goToPrivateListPage() {
+    this.router.navigateByUrl('privatelist');
+  }
 
 }
