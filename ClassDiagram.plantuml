@@ -1,0 +1,270 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class ApplicationConfiguration {
+  - userRepository: UserRepository
+  + passwordEncoder(): PasswordEncoder
+  + authenticationProvider(): AuthenticationProvider
+  + userDetailsService(): UserDetailsService
+  + authenticationManager(AuthenticationConfiguration): AuthenticationManager
+}
+class AuthenticationController {
+  - userService: UserService
+  - authenticationService: AuthenticationService
+  - jwtService: JwtService
+  + register(RegisterRequest): ResponseEntity<String>
+  + login(AuthenticationRequest): ResponseEntity<AuthenticationResponse>
+  + deleteAccount(String): void
+}
+class AuthenticationRequest {
+  - password: String
+  - userName: String
+  + getUserName(): String
+  + getPassword(): String
+  + setUserName(String): void
+  + setPassword(String): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+class AuthenticationResponse {
+  - token: String
+  + getToken(): String
+  + setToken(String): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + builder(): AuthenticationResponseBuilder
+}
+class AuthenticationService {
+  - passwordEncoder: PasswordEncoder
+  - userRepository: UserRepository
+  - authenticationManager: AuthenticationManager
+  - jwtService: JwtService
+  + authenticate(AuthenticationRequest): AuthenticationResponse
+  + register(RegisterRequest): void
+}
+class Destination {
+  - stayDate: StayDates
+  - image: String
+  - title: String
+  - isPublic: Boolean
+  - id: Integer
+  - user: User
+  - location: Geolocation
+  - description: String
+  + getId(): Integer
+  + setDescription(String): void
+  + setImage(String): void
+  + getTitle(): String
+  + getDescription(): String
+  + getStayDate(): StayDates
+  + getLocation(): Geolocation
+  + getImage(): String
+  + setId(Integer): void
+  + getIsPublic(): Boolean
+  + setTitle(String): void
+  + getUser(): User
+  + toString(): String
+  + setStayDate(StayDates): void
+  + setIsPublic(Boolean): void
+  + setUser(User): void
+  + setLocation(Geolocation): void
+}
+class DestinationBucketListBackendApplication {
+  + main(String[]): void
+}
+class DestinationController {
+  - destinationService: DestinationService
+  - jwtService: JwtService
+  - userService: UserService
+  - convertToDto(Destination): DestinationDTO
+  + modifyPublicDestination(String, Integer, DestinationDTO): void
+  + modifyPrivateDestination(String, Integer, DestinationDTO): void
+  + markDestinationAsPublic(String, Integer): void
+  + getPublicDestinations(Integer, Integer): Page<DestinationDTO>
+  - convertToEntity(DestinationDTO): Destination
+  + deletePrivateDestination(String, Integer): void
+  + deletePublicDestination(String, Integer): void
+  + addPrivateDestination(String, DestinationDTO): void
+  + getPrivateDestinations(String, Integer, Integer): Page<DestinationDTO>
+}
+class DestinationDTO {
+  - description: String
+  - stayDate: StayDates
+  - isPublic: Boolean
+  - image: String
+  - location: Geolocation
+  - title: String
+  + getDescription(): String
+  + getTitle(): String
+  + getStayDate(): StayDates
+  + setIsPublic(Boolean): void
+  # canEqual(Object): boolean
+  + getLocation(): Geolocation
+  + getImage(): String
+  + getIsPublic(): Boolean
+  + setTitle(String): void
+  + setDescription(String): void
+  + setStayDate(StayDates): void
+  + toString(): String
+  + setImage(String): void
+  + equals(Object): boolean
+  + hashCode(): int
+  + setLocation(Geolocation): void
+}
+interface DestinationRepository << interface >>
+class DestinationService {
+  - destinationRepository: DestinationRepository
+  - userRepository: UserRepository
+  + addPrivateDestination(Destination, Integer): void
+  + deleteDestination(Integer, Integer): void
+  + modifyDestination(Destination, Integer, Integer): void
+  + deletePublicDestination(Integer, Integer): void
+  + modifyPublicDestination(Destination, Integer, Integer): void
+  + getDestinationsOfUser(Integer, Integer, Integer): Page<Destination>
+  + markDestinationAsPublic(Integer, Integer): void
+  + getPublicDestinations(Integer, Integer): Page<Destination>
+}
+class Geolocation {
+  - zone: String
+  - destination: Destination
+  - id: Integer
+  - country: String
+  + getCountry(): String
+  + getId(): Integer
+  + getZone(): String
+  + getDestination(): Destination
+  + setId(Integer): void
+  + setCountry(String): void
+  + setZone(String): void
+  + setDestination(Destination): void
+  + toString(): String
+}
+class JwtAuthenticationFilter {
+  - jwtService: JwtService
+  - userDetailsService: UserDetailsService
+  # doFilterInternal(HttpServletRequest, HttpServletResponse, FilterChain): void
+}
+class JwtService {
+  - SECRET_KEY: String
+  - getSignInKey(): Key
+  + generateToken(Map<String, Object>, UserDetails): String
+  + extractClaim(String, Function<Claims, T>): T
+  + extractAllClaims(String): Claims
+  + isTokenValid(String, UserDetails): boolean
+  + extractUsername(String): String
+  + isTokenExpired(String): boolean
+  + generateToken(UserDetails): String
+}
+class RegisterRequest {
+  - userName: String
+  - email: String
+  - password: String
+  + setUserName(String): void
+  + getUserName(): String
+  + getPassword(): String
+  + getEmail(): String
+  + setPassword(String): void
+  + toString(): String
+  + setEmail(String): void
+  + equals(Object): boolean
+  + builder(): RegisterRequestBuilder
+  # canEqual(Object): boolean
+  + hashCode(): int
+}
+class SecurityConfiguration {
+  - jwtFilter: JwtAuthenticationFilter
+  - authenticationProvider: AuthenticationProvider
+  + securityFilterChain(HttpSecurity): SecurityFilterChain
+}
+class ServletInitializer {
+  # configure(SpringApplicationBuilder): SpringApplicationBuilder
+}
+class StayDates {
+  - startDate: Date
+  - destination: Destination
+  - endDate: Date
+  - id: Integer
+  + getEndDate(): Date
+  + getId(): Integer
+  + getStartDate(): Date
+  + getDestination(): Destination
+  + setId(Integer): void
+  + setStartDate(Date): void
+  + setEndDate(Date): void
+  + setDestination(Destination): void
+  + toString(): String
+}
+class User {
+  - userType: UserType
+  - privateList: List<Destination>
+  - id: Integer
+  - password: String
+  - userName: String
+  - eMail: String
+  + getId(): Integer
+  + getEMail(): String
+  + getUserType(): UserType
+  + getPrivateList(): List<Destination>
+  + builder(): UserBuilder
+  + setId(Integer): void
+  + setUserName(String): void
+  + setEMail(String): void
+  + setPrivateList(List<Destination>): void
+  + setUserType(UserType): void
+  + setPassword(String): void
+  + getAuthorities(): Collection<GrantedAuthority>
+  + getPassword(): String
+  + getUsername(): String
+  + isAccountNonExpired(): boolean
+  + isEnabled(): boolean
+  + isAccountNonLocked(): boolean
+  + isCredentialsNonExpired(): boolean
+}
+interface UserRepository << interface >> {
+  + findUserByUserName(String): Optional<User>
+}
+class UserService {
+  - userRepository: UserRepository
+  + loadUserByUsername(String): User
+  + deleteUser(Integer): void
+}
+enum UserType << enumeration >> {
+  + CLIENT: 
+  + ADMIN: 
+  + values(): UserType[]
+  + valueOf(String): UserType
+}
+
+ApplicationConfiguration                "1" *-[#595959,plain]-> "userRepository\n1" UserRepository                          
+AuthenticationController                "1" *-[#595959,plain]-> "authenticationService\n1" AuthenticationService                   
+AuthenticationController                "1" *-[#595959,plain]-> "jwtService\n1" JwtService                              
+AuthenticationController                "1" *-[#595959,plain]-> "userService\n1" UserService                             
+AuthenticationService                   "1" *-[#595959,plain]-> "jwtService\n1" JwtService                              
+AuthenticationService                   "1" *-[#595959,plain]-> "userRepository\n1" UserRepository                          
+Destination                             "1" *-[#595959,plain]-> "location\n1" Geolocation                             
+Destination                             "1" *-[#595959,plain]-> "stayDate\n1" StayDates                               
+Destination                             "1" *-[#595959,plain]-> "user\n1" User                                    
+DestinationController                    -[#595959,dashed]->  Destination                             : "«create»"
+DestinationController                    -[#595959,dashed]->  DestinationDTO                          : "«create»"
+DestinationController                   "1" *-[#595959,plain]-> "destinationService\n1" DestinationService                      
+DestinationController                   "1" *-[#595959,plain]-> "jwtService\n1" JwtService                              
+DestinationController                   "1" *-[#595959,plain]-> "userService\n1" UserService                             
+DestinationDTO                          "1" *-[#595959,plain]-> "location\n1" Geolocation                             
+DestinationDTO                          "1" *-[#595959,plain]-> "stayDate\n1" StayDates                               
+DestinationService                      "1" *-[#595959,plain]-> "destinationRepository\n1" DestinationRepository                   
+DestinationService                      "1" *-[#595959,plain]-> "userRepository\n1" UserRepository                          
+Geolocation                             "1" *-[#595959,plain]-> "destination\n1" Destination                             
+JwtAuthenticationFilter                 "1" *-[#595959,plain]-> "jwtService\n1" JwtService                              
+SecurityConfiguration                   "1" *-[#595959,plain]-> "jwtFilter\n1" JwtAuthenticationFilter                 
+StayDates                               "1" *-[#595959,plain]-> "destination\n1" Destination                             
+User                                    "1" *-[#595959,plain]-> "privateList\n*" Destination                             
+User                                    "1" *-[#595959,plain]-> "userType\n1" UserType                                
+UserService                             "1" *-[#595959,plain]-> "userRepository\n1" UserRepository                          
+@enduml
