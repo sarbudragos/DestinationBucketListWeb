@@ -1,6 +1,6 @@
 # DestinationBucketListWeb
 
-For this projecttwo technologies were used, namely Angular and Spring, to implement the following features:
+For this project two technologies were used, namely Angular and Spring, to implement the following features:
 
 ![image](UseCaseDiagram.png)
 
@@ -14,3 +14,7 @@ The backend is deployed on an Google Cloud VM instance, using the following tech
 -Tomcat is the application server
 -Nginx is the reverse proxy
 -certbot, used to acquire a certificate for the proxy server, for https connection
+
+The frontend is deployed on Netlify
+
+The frontend is written with Angular using Typescript. Styling was done with Tailwind and CSS. Features route protected pages, login using JWT tokens.
