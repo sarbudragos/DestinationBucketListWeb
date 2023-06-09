@@ -1,5 +1,12 @@
 # DestinationBucketListWeb
 
+This is a personal private vacation destinations bucket list web app. 
+Firstly, the user must authenticate (register/log in); then, he gains access to its private list, as well as a public list.
+When the user is on the private list page, he can push a button to add a new entry. Each destination has a geolocation(country and zone), title, image, description and stay dates(start date and end date). Via the entries in the table, the user can remove, update and favourite a certain destination.
+When the user marks a destination as favourite, the destination gets to the public list, where anyone can see it.
+The user has one of two roles: "USER" or "ADMIN". The admin can manage the public list of destinations(modify or delete).
+Any user can delete its account and there goes its destinations too.
+
 For this project two technologies were used, namely Angular and Spring, to implement the following features:
 
 ![image](UseCaseDiagram.png)
