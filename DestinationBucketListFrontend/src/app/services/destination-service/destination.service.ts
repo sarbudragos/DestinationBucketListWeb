@@ -7,7 +7,7 @@ import { Destination } from 'src/app/models/Destination';
   providedIn: 'root'
 })
 export class DestinationService {
-  private url = 'http://localhost:80';
+  private url = 'https://dragossarbu-sdi.twilightparadox.com/DestinationBucketListBackend-0.0.1-SNAPSHOT';
   constructor(private http: HttpClient) { }
 
   getPublicDestinations(): Observable<Destination[]>{

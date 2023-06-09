@@ -8,7 +8,7 @@ import { AddDestinationComponent } from './components/add-destination/add-destin
 import { PrivateListComponent } from './components/private-list/private-list.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { UpdateDestinationComponent } from './components/update-destination/update-destination.component';
-import { DeleetDestinationComponent } from './components/delete-destination/delete-destination.component';
+import { DeleteDestinationComponent } from './components/delete-destination/delete-destination.component';
 
 const routes: Routes = [
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'delete-public-destination/:id',
-    component: DeleetDestinationComponent
+    component: DeleteDestinationComponent
   }
 ];
 

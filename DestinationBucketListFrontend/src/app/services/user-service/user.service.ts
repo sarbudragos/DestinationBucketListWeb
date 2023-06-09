@@ -11,7 +11,7 @@ import { RegisterRequest } from 'src/app/models/RegisterRequest';
 })
 export class UserService {
   private token: String = "";
-  private url = 'http://localhost:80';
+  private url = 'https://dragossarbu-sdi.twilightparadox.com/DestinationBucketListBackend-0.0.1-SNAPSHOT';
   constructor(private http: HttpClient) { }
 
   loginUser(userName: string, password: string): Observable<AuthenticationResponse> {
