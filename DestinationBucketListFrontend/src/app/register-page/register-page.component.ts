@@ -14,7 +14,10 @@ export class RegisterPageComponent {
   }
   ngOnInit(): void { }
 
-  registerUser(userName: string, password: string) {
-    this.userService.registerUser(userName, password);
+  registerUser() {
+    let userName = (<HTMLInputElement>document.getElementById("usernameR")).value;
+    let password = (<HTMLInputElement>document.getElementById("passwordR")).value;
+    let email = (<HTMLInputElement>document.getElementById("emailR")).value;
+    this.userService.registerUser(userName, password, email).subscribe();
   }
 }

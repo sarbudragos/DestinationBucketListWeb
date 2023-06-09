@@ -1,0 +1,33 @@
+<h1 class="font-bold text-3xl py-5">All books</h1>
+
+<table class="w-full border-collapse table-auto">
+  <!-- <thead>
+    <tr class="bg-violet-100 text-gray-600 uppercase text-sm leading-normal">
+      <th class="py-3 px-6 text-left">#</th>
+      <th class="py-3 px-6 text-left">Title</th>
+      <th class="py-3 px-6 text-left">Theme</th>
+      <th class="py-3 px-6 text-left">Publish Year</th>
+      <th class="py-3 px-6 text-left">Number of Pages</th>
+      <th class="py-3 px-6 text-left">Price</th>
+      <th class="py-3 px-6 text-left">Actions</th>
+    </tr>
+  </thead> -->
+  <tbody class="text-gray-600 text-sm font-light">
+    <tr
+      *ngFor="let destination of destinations; index as i"
+      [routerLink]="[destination.id]"
+      class="border-b border-violet-200 hover:bg-violet-200"
+    >
+      <td class="py-3 px-6 text-left">
+        <a>{{ i + 1 }}</a>
+      </td>
+      <td class="py-3 px-6 text-left">{{ destination.title }}</td>
+      <td class="py-3 px-6 text-left">{{ destination.description }}</td>
+      <td class="py-3 px-6 text-left">{{ destination.stayDate.startDate }}</td>
+      <td class="py-3 px-6 text-left">{{ destination.stayDate.endDate }}</td>
+      <td class="py-3 px-6 text-left">{{ destination.location.country }}</td>
+      <td class="py-3 px-6 text-left">{{ destination.location.zone }}</td>
+      <td class="py-3 px-6 text-left">{{ destination.image }}</td>
+    </tr>
+  </tbody>
+</table>

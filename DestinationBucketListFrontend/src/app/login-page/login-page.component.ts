@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user-service/user.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-page',
@@ -7,17 +8,18 @@ import { UserService } from '../services/user-service/user.service';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
+  private token: string;
   constructor(private userService: UserService) { 
     this.userService = userService;
+    this.token = "";
   }
   ngOnInit(): void { }
 
-  loginUser(userName: string, password: string) {
-    console.log("User name: " + userName + " Password: " + password + " from login-page.component.ts loginUser() s");
-    if (this.userService.loginUser(userName, password))
-      alert("Login successful!");
-    else
-      alert("Login failed!");
+  loginUser() {
+    let userName = (<HTMLInputElement>document.getElementById("usernameL")).value;
+    let password = (<HTMLInputElement>document.getElementById("passwordL")).value;
+    this.userService.loginUser(userName, password).subscribe(result => {this.token = result.token;});
+    // redirect to private list page
   }
-  
+
 }
