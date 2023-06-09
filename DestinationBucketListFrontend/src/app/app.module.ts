@@ -11,9 +11,8 @@ import { PublicListComponent } from './components/public-list/public-list.compon
 import { PrivateListComponent } from './components/private-list/private-list.component';
 import { AddDestinationComponent } from './components/add-destination/add-destination.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
-import { MarkFavouriteComponent } from './components/mark-favourite/mark-favourite.component';
 import { UpdateDestinationComponent } from './components/update-destination/update-destination.component';
-import { DeleetDestinationComponent } from './components/deleet-destination/deleet-destination.component';
+import { DeleteDestinationComponent } from './components/delete-destination/delete-destination.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +24,8 @@ import { DeleetDestinationComponent } from './components/deleet-destination/dele
     PrivateListComponent,
     AddDestinationComponent,
     DeleteUserComponent,
-    MarkFavouriteComponent,
     UpdateDestinationComponent,
-    DeleetDestinationComponent
+    DeleteDestinationComponent
   ],
   imports: [
     BrowserModule,

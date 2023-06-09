@@ -1,8 +1,16 @@
 .navbar .text {
-    color: #FFFFFF;
+    color: white;
     margin: 10px;
 }
 
+.navbar button {
+    background-color: green;
+}
+
+.navbar button:hover{
+    background-color: darkgreen;
+}
+
 .navbar{
-    background-color: black;
+    background-color: green;
 }
