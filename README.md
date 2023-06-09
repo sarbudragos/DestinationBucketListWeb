@@ -2,7 +2,7 @@
 
 For this projecttwo technologies were used, namely Angular and Spring, to implement the following features:
 
-#todo put usecase diagram
+![image](UseCaseDiagram.png)
 
 
 Backend Class Diagram:
